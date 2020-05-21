@@ -73,8 +73,6 @@ func handleRequest(ctx context.Context, event events.APIGatewayProxyRequest) (ev
 	if !jwtToken.Valid {
 		return events.APIGatewayCustomAuthorizerResponse{}, errors.New("unauthorized")
 	}
-	claims := jwtToken.Claims.(jwt.MapClaims)
-	log.Println(claims)
 	return buildProxyResponseForRestApi(jwtToken, event), nil
 }
 
